@@ -3,13 +3,13 @@ const router = express.Router();
 const Surf = require('../models/surf');
 
 router.get('/surfs', (req, res, next) => {
-  Surf.find({}, 'place, date, no_other_people, rising_tide')
+  Surf.find({})
   .then(data => res.json(data))
   .catch(next)
 });
 
 router.post('/surfs', (req, res, next) => {
-    if(req.body.place || req.body.date){
+    if(req.body.place && req.body.date){
         Surf.create(req.body)
           .then(data => res.json(data))
           .catch(next)

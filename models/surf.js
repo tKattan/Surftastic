@@ -16,7 +16,7 @@ const SurfSchema = new Schema({
   },
   rising_tide: {
       type: Boolean
-  }
+   }
 })
 
 //create model for todo
