@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/tKattan/Surftastic/issues"
   },
-  "homepage": "https://github.com/tKattan/Surftastic#readme"
+  "homepage": "https://github.com/tKattan/Surftastic#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
 }
