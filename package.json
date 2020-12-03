@@ -1,0 +1,24 @@
+{
+  "name": "surftastic",
+  "version": "1.0.0",
+  "description": "Surf app to collect environmental data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tKattan/Surftastic.git"
+  },
+  "keywords": [
+    "surf",
+    "surfing",
+    "ocean"
+  ],
+  "author": "Taleiven Kattan",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/tKattan/Surftastic/issues"
+  },
+  "homepage": "https://github.com/tKattan/Surftastic#readme"
+}
