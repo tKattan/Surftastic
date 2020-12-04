@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {FormControl, FormGroup, FormLabel,Checkbox, HelpBlock, Radio, Button} from 'react-bootstrap';
-
+import axios from 'axios';
 
 
 class SiteForm extends React.Component {
