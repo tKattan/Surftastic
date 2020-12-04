@@ -1,9 +1,12 @@
 const express = require ('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const Submission = require('../models/submission');
 const Geolocation = require('../models/geolocation');
 const Environnement = require('../models/environnement');
 const Activity = require('../models/activity');
+const ModelsManager = require('../models/modelsManager');
+const ObjectId = mongoose.Types.ObjectId;
 
 //SUBMISSIONS
 
@@ -81,6 +84,7 @@ router.delete('/environnements/:id', (req, res, next) => {
   Environnement.findOneAndDelete({"_id": req.params.id})
     .then(data => res.json(data))
     .catch(next)
+    
 });
 
 //ACTIVITIES
@@ -109,5 +113,36 @@ router.delete('/activities/:id', (req, res, next) => {
     .catch(next)
 });
 
+//MODELS MANAGER
+
+router.post('/modelsManagers', (req, res, next) => {
+  var env 
+  var act 
+  var geo 
+  
+  if(req.body.environnement){
+    Environnement.create(req.body.environnement)
+        .then(data => env = data._id)
+        .catch(next)
+    }
+  if(req.body.activity){
+      Activity.create(req.body.Activity)
+          .then(data => act = data._id)
+          .catch(next)
+    }  
+  if(req.body.geolocation){
+      Geolocation.create(req.body.Geolocation)
+          .then(data => geo = data._id)
+          .catch(next)
+    }  
+
+  if(env!=null || act!=null || geo!=null){
+    Submission.create({idEnvironnement: ObjectId(env) ,
+                                      idActivities: ObjectId(act),             
+                                      idGeo: ObjectId(geo)})
+          .then(data => res.json(data))
+          .catch(next)
+  }
+});
 
 module.exports = router;
