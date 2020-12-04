@@ -1,15 +1,13 @@
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs'
 import React, {useState} from 'react';
-import Basic from './Basic';
+import SiteForm from './SiteForm';
 
 function NavTab() {
     const [key, setKey] = useState('home');
 
     
 const Home = () => <span>Home</span>
-
-const Form = () => <span>Form</span>;
 
 const Setting = () => <span>Setting</span>;
   
@@ -23,7 +21,7 @@ const Setting = () => <span>Setting</span>;
             <Home/>
         </Tab>
         <Tab eventKey="form" title="Form">
-          <Form />
+          <SiteForm />
         </Tab>
         <Tab eventKey="setting" title="Setting">
           <Setting />
