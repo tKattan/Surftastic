@@ -12,17 +12,15 @@ const SubmissionSchema = new Schema({
   idGeo: {
     type: ObjectId,
     required: [true, 'The geo id field is required']
-  }/* ,
-  ID_activite: {
-      type: String,
-      required: [true, 'The date field is required']
   },
-  ID_environnement: {
-      type: String
+  idEnvironnement: {
+    type: ObjectId,
+    required: [true, 'The environnement id field is required']
   },
-  ID_account: {
-      type: String
-   } */
+  idActivities: {
+    type: ObjectId,
+    required: [true, 'The activities id field is required']
+  }
 })
 
 //create model for todo
