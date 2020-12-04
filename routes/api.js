@@ -1,34 +1,9 @@
 const express = require ('express');
 const router = express.Router();
-const Surf = require('../models/surf');
 const Submission = require('../models/submission');
 const Geolocation = require('../models/geolocation');
-
-//SURF --> test schemas
-
-router.get('/surfs', (req, res, next) => {
-  Surf.find({})
-  .then(data => res.json(data))
-  .catch(next)
-});
-
-router.post('/surfs', (req, res, next) => {
-    if(req.body.place && req.body.date){
-        Surf.create(req.body)
-          .then(data => res.json(data))
-          .catch(next)
-      }else {
-        res.json({
-          error: "The place or date fields are empty"
-        })
-      }
-});
-
-router.delete('/surfs/:id', (req, res, next) => {
-    Surf.findOneAndDelete({"_id": req.params.id})
-    .then(data => res.json(data))
-    .catch(next)
-});
+const Environnement = require('../models/environnement');
+const Activity = require('../models/activity');
 
 //SUBMISSIONS
 
@@ -39,13 +14,13 @@ router.get('/submissions', (req, res, next) => {
 });
 
 router.post('/submissions', (req, res, next) => {
-    if(req.body.idGeo && req.body.date){
+    if(req.body.idActivities && req.body.idEnvironnement && req.body.idGeo && req.body.date){
         Submission.create(req.body)
           .then(data => res.json(data))
           .catch(next)
       }else {
         res.json({
-          error: "The geo or date fields are empty"
+          error: "The geo or date or activities or environnement fields are empty"
         })
       }
 });
@@ -65,7 +40,7 @@ router.get('/geolocations', (req, res, next) => {
 });
 
 router.post('/geolocations', (req, res, next) => {
-    if(req.body.place){
+    if(req.body.placeName){
         Geolocation.create(req.body)
           .then(data => res.json(data))
           .catch(next)
@@ -82,6 +57,57 @@ router.delete('/geolocations/:id', (req, res, next) => {
     .catch(next)
 });
 
+//ENVIRONNEMENT
+
+router.get('/environnements', (req, res, next) => {
+  Environnement.find({})
+  .then(data => res.json(data))
+  .catch(next)
+});
+
+router.post('/environnements', (req, res, next) => {
+    if(true){
+      Environnement.create(req.body)
+          .then(data => res.json(data))
+          .catch(next)
+      }else {
+        res.json({
+          error: "The *** fields are empty"
+        })
+      }
+});
+
+router.delete('/environnements/:id', (req, res, next) => {
+  Environnement.findOneAndDelete({"_id": req.params.id})
+    .then(data => res.json(data))
+    .catch(next)
+});
+
+//ACTIVITIES
+
+router.get('/activities', (req, res, next) => {
+  Activity.find({})
+  .then(data => res.json(data))
+  .catch(next)
+});
+
+router.post('/activities', (req, res, next) => {
+    if(true){
+      Activity.create(req.body)
+          .then(data => res.json(data))
+          .catch(next)
+      }else {
+        res.json({
+          error: "The *** fields are empty"
+        })
+      }
+});
+
+router.delete('/activities/:id', (req, res, next) => {
+  Activity.findOneAndDelete({"_id": req.params.id})
+    .then(data => res.json(data))
+    .catch(next)
+});
 
 
 module.exports = router;
