@@ -31,9 +31,37 @@ class SiteForm extends React.Component {
     this.setState({errormessage: err});
     this.setState({[nam]: val});
   }
+  addInfo = () => {
+      axios.post('/api/modelsManager', {geolocation: {temperature: this.state.temperature,
+                                                      cityOrTown: this.state.ville, 
+                                                      placeName: this.state.spot}, 
+                                        environnement: {beachpollution: this.state.beachpollution, 
+                                                        waterpollution: this.state.waterpollution, 
+                                                        airPollution: this.state.airpollution}, 
+                                        activities: {nbSurfer: this.state.populationsurfeurs}})
+        .then(res => {
+          if(res.data){
+            this.state = {
+              ville: '',
+              spot:'',
+              beachpollution: null,
+              waterpollution: null,
+              airpollution: null,
+              temperature: null,
+              populationsurfeurs: null,
+              errormessage: '',
+            };
+          }
+        })
+        .catch(err => console.log(err))
+  }
+  mySubmitHandler = (event) => {
+    event.preventDefault();
+    alert("You are submitting " + JSON.stringify(this.state));
+  }
   render(){
     return (
-      <form>
+      <form onSubmit={this.mySubmitHandler}>
         <FormGroup controlId="formControlsText">
           <FormLabel>Ville : </FormLabel>
           <FormControl type="" placeholder="Lacanau" name='ville' onChange={this.myChangeHandler}/>
